@@ -1,11 +1,11 @@
 {
   "name": "scrap-url",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "npx ttsc -p tsconfig.json",
-    "start": "node dist/server.js",
+    "start": "node index.js",
     "dev": "ts-node-dev --prefer-ts true --no-notify -r tsconfig-paths/register --watch src --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "dependencies": {
