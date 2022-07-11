@@ -13,9 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPageContent = void 0;
-const puppeteer_1 = __importDefault(require("puppeteer"));
+// import puppeteer from 'puppeteer'
+const chrome_aws_lambda_1 = __importDefault(require("chrome-aws-lambda"));
 const getPageContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
-    const browser = yield puppeteer_1.default.launch();
+    // const browser = await puppeteer.launch();
+    const browser = yield chrome_aws_lambda_1.default.puppeteer.launch({
+        args: [...chrome_aws_lambda_1.default.args, "--hide-scrollbars", "--disable-web-security"],
+        defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
+        executablePath: yield chrome_aws_lambda_1.default.executablePath,
+        headless: true,
+        ignoreHTTPSErrors: true,
+    });
     const page = yield browser.newPage();
     yield page.goto(url, { waitUntil: 'domcontentloaded' });
     const pageContent = yield page.content();
