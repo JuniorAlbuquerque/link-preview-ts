@@ -1,4 +1,5 @@
 import playwright from 'playwright'
+import axios from 'axios'
 
 const getPageContent = async (url: string) => {
   // const browser = await puppeteer.launch();
@@ -15,13 +16,15 @@ const getPageContent = async (url: string) => {
 
   // await page.goto(url, {waitUntil: 'domcontentloaded'});
   // const pageContent = await page.content()
-  const browser = await playwright.chromium.launch();
-  const page = await browser.newPage();
+  // const browser = await playwright.chromium.launch();
+  // const page = await browser.newPage();
 
-  await page.goto(url);
-  const pageContent = await page.content()
+  // await page.goto(url);
+  // const pageContent = await page.content()
+  const pageContent = await axios.get(url)
+  
 
-  return pageContent
+  return pageContent.data
 }
 
 export {

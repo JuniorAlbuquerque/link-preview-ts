@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPageContent = void 0;
-const playwright_1 = __importDefault(require("playwright"));
+const axios_1 = __importDefault(require("axios"));
 const getPageContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
     // const browser = await puppeteer.launch();
     // const browser = await chromium.puppeteer.launch({
@@ -26,10 +26,11 @@ const getPageContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
     // const page = await browser.newPage();
     // await page.goto(url, {waitUntil: 'domcontentloaded'});
     // const pageContent = await page.content()
-    const browser = yield playwright_1.default.chromium.launch();
-    const page = yield browser.newPage();
-    yield page.goto(url);
-    const pageContent = yield page.content();
-    return pageContent;
+    // const browser = await playwright.chromium.launch();
+    // const page = await browser.newPage();
+    // await page.goto(url);
+    // const pageContent = await page.content()
+    const pageContent = yield axios_1.default.get(url);
+    return pageContent.data;
 });
 exports.getPageContent = getPageContent;

@@ -27,7 +27,8 @@ class ScrapController {
             catch (error) {
                 console.log(error);
                 res.status(500).json({
-                    message: 'Erro ao carregar informações da url solicitada'
+                    message: 'Erro ao carregar informações da url solicitada',
+                    error
                 });
             }
         });
