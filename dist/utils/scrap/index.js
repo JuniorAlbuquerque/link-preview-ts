@@ -15,22 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPageContent = void 0;
 const axios_1 = __importDefault(require("axios"));
 const getPageContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
-    // const browser = await puppeteer.launch();
-    // const browser = await chromium.puppeteer.launch({
-    //   args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-    //   defaultViewport: chromium.defaultViewport,
-    //   executablePath: await chromium.executablePath,
-    //   headless: true,
-    //   ignoreHTTPSErrors: true,
-    // })
-    // const page = await browser.newPage();
-    // await page.goto(url, {waitUntil: 'domcontentloaded'});
-    // const pageContent = await page.content()
-    // const browser = await playwright.chromium.launch();
-    // const page = await browser.newPage();
-    // await page.goto(url);
-    // const pageContent = await page.content()
-    const pageContent = yield axios_1.default.get(url);
-    return pageContent.data;
+    const { data } = yield axios_1.default.get(url);
+    return data;
 });
 exports.getPageContent = getPageContent;
