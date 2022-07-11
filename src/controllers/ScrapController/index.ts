@@ -1,6 +1,6 @@
-import { parseHtml } from "@app/utils/parseHtml";
-import { getPreviewData } from "@app/utils/previewTags";
-import { getPageContent } from "@app/utils/scrap";
+import { parseHtml } from "../../utils/parseHtml";
+import { getPreviewData } from "../../utils/previewTags";
+import { getPageContent } from "../../utils/scrap";
 import { Response, Request, Router } from "express";
 
 export class ScrapController {
@@ -21,6 +21,7 @@ export class ScrapController {
       
       res.json(tags)
     } catch (error) {
+      console.log(error)
       res.status(500).json({
         message: 'Erro ao carregar informações da url solicitada'
       })

@@ -13,19 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPageContent = void 0;
-// import puppeteer from 'puppeteer'
-const chrome_aws_lambda_1 = __importDefault(require("chrome-aws-lambda"));
+const playwright_1 = __importDefault(require("playwright"));
 const getPageContent = (url) => __awaiter(void 0, void 0, void 0, function* () {
     // const browser = await puppeteer.launch();
-    const browser = yield chrome_aws_lambda_1.default.puppeteer.launch({
-        args: [...chrome_aws_lambda_1.default.args, "--hide-scrollbars", "--disable-web-security"],
-        defaultViewport: chrome_aws_lambda_1.default.defaultViewport,
-        executablePath: yield chrome_aws_lambda_1.default.executablePath,
-        headless: true,
-        ignoreHTTPSErrors: true,
-    });
+    // const browser = await chromium.puppeteer.launch({
+    //   args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    //   defaultViewport: chromium.defaultViewport,
+    //   executablePath: await chromium.executablePath,
+    //   headless: true,
+    //   ignoreHTTPSErrors: true,
+    // })
+    // const page = await browser.newPage();
+    // await page.goto(url, {waitUntil: 'domcontentloaded'});
+    // const pageContent = await page.content()
+    const browser = yield playwright_1.default.chromium.launch();
     const page = yield browser.newPage();
-    yield page.goto(url, { waitUntil: 'domcontentloaded' });
+    yield page.goto(url);
     const pageContent = yield page.content();
     return pageContent;
 });
