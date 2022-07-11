@@ -16,12 +16,12 @@ const scrap_1 = require("../../utils/scrap");
 const express_1 = require("express");
 class ScrapController {
     constructor() {
-        this.index = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.index = async (req, res) => {
             const { url } = req.query;
             // try {
-                const pageContent = yield (0, scrap_1.getPageContent)(url);
-                const html = (0, parseHtml_1.parseHtml)(pageContent);
-                const tags = (0, previewTags_1.getPreviewData)(html);
+                const pageContent = await scrap_1.getPageContent(url);
+                const html = parseHtml_1.parseHtml(pageContent);
+                const tags = previewTags_1.getPreviewData(html);
                 res.json({html, tags});
             // }
             // catch (error) {
@@ -30,7 +30,7 @@ class ScrapController {
             //         error,
             //     });
             // }
-        });
+        };
         this.router = (0, express_1.Router)();
         this.routes();
     }
